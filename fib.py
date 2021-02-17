@@ -41,7 +41,7 @@ def check_user_input(val):
     types = [int, float, str]
     for typ in types:
         try:
-            return typ
+            return typ(val), typ
         except ValueError:
             pass
 
@@ -51,13 +51,11 @@ if __name__=="__main__":
     #get desired n value, requires user to enter integer
     n = input('Enter the nth Fibonacci number you are looking for:  ')
 
-    type_n = check_user_input(n)
+    n, type_n = check_user_input(n)
     if type_n != int:
         print("ERROR: an integer value is required, not type {}".format(type(n)))
         print("Exiting program...")
         exit()
-    else:
-        n = int(n)
     
     #prevent large number input
     if n > 1000:
